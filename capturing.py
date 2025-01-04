@@ -36,20 +36,18 @@ app.after(100, maximize_window)
 app.bind('<Escape>', lambda e: app.quit())
 
 # Load encodings and class names
-def load_encodings(encodings_path):
+def load_encodings():
     encodings = []
     class_names = []
-    for file in os.listdir(encodings_path):
+    for file in os.listdir('faces'):
         if file.endswith(".npy"):
             class_name = file.split('.')[0]
-            encoding = np.load(os.path.join(encodings_path, file))
+            encoding = np.load(os.path.join('faces', file))
             encodings.append(encoding)
             class_names.append(class_name)
     return encodings, class_names
 
-# Path for saved encodings
-encodings_path = 'faces'
-known_encodings, class_names = load_encodings(encodings_path)
+known_encodings, class_names = load_encodings()
 print(f"Loaded classes: {class_names}")
 
 # Global flags
@@ -97,10 +95,10 @@ def show_temporary_message_unlock(message, success):
 
     # Configurar o ícone
     if success:
-        icon_path = "imgs/check_icon.png"
+        icon_path = "icons/check_icon.png"
         text_color = "green"
     else:
-        icon_path = "imgs/x_icon.png"
+        icon_path = "icons/x_icon.png"
         text_color = "red"
 
     icon = Image.open(icon_path)
@@ -207,14 +205,14 @@ capture_button.grid(row=2, column=0, pady=10, columnspan=2)
 
 # Display the encodings in a CTkScrollableFrame
 def display_encodings():
-    known_encodings, class_names = load_encodings(encodings_path)
+    known_encodings, class_names = load_encodings()
     
     # Limpar os widgets existentes no frame
     for widget in scrollable_frame.winfo_children():
         widget.destroy()
     
     # Carregar a imagem da lixeira
-    trash_icon = Image.open("imgs/trash_icon.png")
+    trash_icon = Image.open("icons/trash_icon.png")
     trash_icon = trash_icon.resize((20, 20), Image.LANCZOS)
     trash_ctk_image = ctk.CTkImage(dark_image=trash_icon, size=(20, 20))
     
@@ -265,7 +263,7 @@ def remove_encoding(name):
 
 # Função para remover o arquivo e o frame
 def add_encoding(name):
-    trash_icon = Image.open("imgs/trash_icon.png")
+    trash_icon = Image.open("icons/trash_icon.png")
     trash_icon = trash_icon.resize((20, 20), Image.LANCZOS)
     trash_ctk_image = ctk.CTkImage(dark_image=trash_icon, size=(20, 20))
 
@@ -339,7 +337,7 @@ def camera_thread():
     global matches, camera_running, unlock
 
     while camera_running:
-        known_encodings, class_names = load_encodings(encodings_path)
+        known_encodings, class_names = load_encodings()
         success, frame = vid.read()
         if not success:
             print("Failed to capture frame")
