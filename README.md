@@ -1,4 +1,4 @@
-# Reconhecimento Facial
+![banner](imgs/Reconhecimento-Facial.png)
 
 <div align="center">
 
