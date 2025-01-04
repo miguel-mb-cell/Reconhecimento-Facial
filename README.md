@@ -21,7 +21,7 @@ Confira as tecnologias utilizadas abaixo!
 <img src="imgs/Python-logo.png" alt="Python" width="70" /> <br>
 <img src="imgs/CustomTkinter-logo.png" alt="CTK" width="70" /> &nbsp;
 <img src="imgs/dlib-logo.png" alt="Dlib" width="85" /> <br>
-<img src="imgs/Numpy-logo.png" alt="Numpy" width="70" /> &nbsp;
+<img src="imgs/NumPy-logo.png" alt="Numpy" width="70" /> &nbsp;
 <img src="imgs/pillow-logo.png" alt="Pillow" width="70" /> &nbsp;
 <img src="imgs/opencv-logo.png" alt="OpenCV" width="70" />
 
